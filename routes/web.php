@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductAjaxController;
+use App\Models\Employee;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('content.dashboard', [
+        'title' => 'CRUD Datatables',
+        'subTitle' => 'Dashboard'
+    ]);
+    // var_dump(Employee::all());
 });
+
+Route::resource('ajaxproducts', ProductAjaxController::class);
+
+Route::resource('ajaxemployee', EmployeeController::class);
