@@ -19,9 +19,21 @@ use App\Models\Employee;
 Route::get('/', function () {
     return view('content.dashboard', [
         'title' => 'CRUD Datatables',
-        'subTitle' => 'Dashboard'
+        'subTitle' => 'Dashboard',
     ]);
     // var_dump(Employee::all());
+    // var_dump(
+    //     Employee::updateOrCreate(
+    //         [
+    //             'employerName' => 'Rizki Widya P',
+    //             'employerNIK' => 'MGF22100211',
+    //             'employerPosition' => 'Staff',
+    //             'employerDepartment' => 'MIS',
+    //             'employerAddress' => 'Wiyung',
+    //         ],
+    //     ),
+    // );
+    // die();
 });
 
 Route::resource('ajaxproducts', ProductAjaxController::class);

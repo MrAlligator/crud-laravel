@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title }} - {{ $subTitle }}</title>
 
@@ -264,45 +265,65 @@
     <!-- Page level custom scripts -->
     <script type="text/javascript">
         $(function() {
-            
+
             $.ajaxSetup({
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrftoken"]').attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
             var table = $('.data-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('ajaxemployee.index') }}",
-            columns: [{
-                    data: 'employerName',
-                    name: 'employerName'
-                },
-                {
-                    data: 'employerNIK',
-                    name: 'employerNIK'
-                },
-                {
-                    data: 'employerPosition',
-                    name: 'employerPosition'
-                },
-                {
-                    data: 'employerDepartment',
-                    name: 'employerDepartment'
-                },
-                {
-                    data: 'employerAddress',
-                    name: 'employerAddress'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
-                },
-            ]
-        });
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('ajaxemployee.index') }}",
+                columns: [{
+                        data: 'employerName',
+                        name: 'employerName'
+                    },
+                    {
+                        data: 'employerNIK',
+                        name: 'employerNIK'
+                    },
+                    {
+                        data: 'employerPosition',
+                        name: 'employerPosition'
+                    },
+                    {
+                        data: 'employerDepartment',
+                        name: 'employerDepartment'
+                    },
+                    {
+                        data: 'employerAddress',
+                        name: 'employerAddress'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+
+            $('#saveBtn').click(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    data: $('#employerAddForm').serialize(),
+                    url: "{{ route('ajaxemployee.store') }}",
+                    type: "POST",
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#employerAddForm').trigger("reset");
+                        $('#AddModal').modal('hide');
+                        table.draw();
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                        $('#saveBtn').html('Save Changes');
+                    }
+                });
+            });
 
         });
     </script>

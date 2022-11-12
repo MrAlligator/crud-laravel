@@ -52,7 +52,17 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Employee::updateOrCreate(
+            [
+                'employerName' => $request->name,
+                'employerNIK' => $request->nik,
+                'employerPosition' => $request->position,
+                'employerDepartment' => $request->department,
+                'employerAddress' => $request->address
+            ]
+        );
+
+        return response()->json(['success' => 'Data Tersimpan.']);
     }
 
     /**
