@@ -24,8 +24,9 @@ Route::get('/', function () {
     // var_dump(Employee::all());
     // var_dump(
     //     Employee::updateOrCreate(
+    //         ['id' => '4'],
     //         [
-    //             'employerName' => 'Rizki Widya P',
+    //             'employerName' => 'Bambang',
     //             'employerNIK' => 'MGF22100211',
     //             'employerPosition' => 'Staff',
     //             'employerDepartment' => 'MIS',
