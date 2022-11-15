@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductAjaxController;
 use App\Models\Employee;
@@ -36,6 +37,8 @@ Route::get('/', function () {
     // );
     // die();
 });
+
+Route::get('/auth', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
 Route::resource('ajaxproducts', ProductAjaxController::class);
 
