@@ -31,7 +31,8 @@ class EmployeeController extends Controller
 
         return view('content.employeeTables', [
             'title' => 'CRUD Datatables',
-            'subTitle' => 'Tabel'
+            'subTitle' => 'Tabel',
+            'active' => 'emp'
         ]);
     }
 

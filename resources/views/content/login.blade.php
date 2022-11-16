@@ -15,7 +15,8 @@
                                         <img class="mb-4" src="brand/bootstrap-logo.svg" alt="" width="72" height="57">
                                         <h1 class="h4 text-gray-900 mb-4">Please Sign In</h1>
                                     </div>
-                                    <form class="form-signin">
+                                    <form class="form-signin" action="{{ route('login.action') }}" method="POST">
+                                        @csrf
                                         <div class="form-label-group">
                                             <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                                             <label for="username">Username</label>
@@ -31,7 +32,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-block">Sign In</button>
+                                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                                         <hr>
                                         <div class="text-center">
                                             <a class="small" href="#">Forgot Password?</a>
