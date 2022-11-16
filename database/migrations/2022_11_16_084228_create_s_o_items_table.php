@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('itemcode', 25);
             $table->string('itemname', 100);
             $table->string('qty');
-            $table->float('price', 19,2);
-            $table->float('discount', 19,2);
-            $table->float('total', 19,2);
+            $table->decimal('price', 19,2);
+            $table->decimal('discount', 19,2);
+            $table->decimal('total', 19,2);
             $table->timestamps();
         });
     }
