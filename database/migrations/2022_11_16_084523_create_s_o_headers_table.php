@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('userid');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->integer('isERP')->default(0);
-            $table->rememberToken();
+        Schema::create('s_o_headers', function (Blueprint $table) {
+            $table->id('soid');
+            $table->date('tanggal');
+            $table->string('sonumber', 25);
+            $table->integer('accountid');
+            $table->string('accountname', 45);
+            $table->string('customer', 200);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('s_o_headers');
     }
 };

@@ -61,6 +61,12 @@
 
     @include('partials.js')
 
+    @if ($active === 'emp')
+        @include('partials.pagejs.jstest')
+    @elseif ($active === 'soh')
+        @include('partials.pagejs.jssoh')        
+    @endif
+
 </body>
 
 </html>

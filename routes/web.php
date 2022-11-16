@@ -5,7 +5,9 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductAjaxController;
+use App\Http\Controllers\SOHeaderController;
 use App\Models\Employee;
+use App\Models\SOHeader;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,26 +21,26 @@ use App\Models\Employee;
 */
 // Route::resource('ajaxproducts', ProductAjaxController::class)->middleware('auth');
 
-// Route::get('/', function () {
-//     return view('content.dashboard', [
-//         'title' => 'CRUD Datatables',
-//         'subTitle' => 'Dashboard',
-//     ]);
-//     var_dump(Employee::all());
-//     var_dump(
-//         Employee::updateOrCreate(
-//             ['id' => '4'],
-//             [
-//                 'employerName' => 'Bambang',
-//                 'employerNIK' => 'MGF22100211',
-//                 'employerPosition' => 'Staff',
-//                 'employerDepartment' => 'MIS',
-//                 'employerAddress' => 'Wiyung',
-//             ],
-//         ),
-//     );
-//     die();
-// })->middleware('auth');
+Route::get('/check', function () {
+    // return view('content.dashboard', [
+    //     'title' => 'CRUD Datatables',
+    //     'subTitle' => 'Dashboard',
+    // ]);
+    var_dump(SOHeader::find(2));
+    // var_dump(
+    //     Employee::updateOrCreate(
+    //         ['id' => '4'],
+    //         [
+    //             'employerName' => 'Bambang',
+    //             'employerNIK' => 'MGF22100211',
+    //             'employerPosition' => 'Staff',
+    //             'employerDepartment' => 'MIS',
+    //             'employerAddress' => 'Wiyung',
+    //         ],
+    //     ),
+    // );
+    die();
+});
 
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
@@ -50,3 +52,4 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middl
 
 //CRUD
 Route::resource('ajaxemployee', EmployeeController::class)->middleware('auth');
+Route::resource('soheaderajax', SOHeaderController::class)->middleware('auth');
