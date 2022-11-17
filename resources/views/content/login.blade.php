@@ -1,39 +1,41 @@
 @extends('layout.loginLayout')
 
 @section('content')
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-4">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header">
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg">
+                                <div class="p-5">
                                     <div class="text-center">
-                                        <img class="mb-2 mt-4" src="brand/bootstrap-logo.svg" alt="" width="80" height="65">
+                                        <img class="mb-4" src="brand/bootstrap-logo.svg" alt="" width="72" height="57">
+                                        <h1 class="h4 text-gray-900 mb-4">Please Sign In</h1>
                                     </div>
-                                    <h3 class="text-center font-weight-light my-4">Please Sign In</h3>
-                                </div>
-                                <div class="card-body">
-                                    <form action="{{ route('login.action') }}" method="POST">
+                                    <form class="form-signin" action="{{ route('login.action') }}" method="POST">
                                         @csrf
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="username" name="username" type="text" placeholder="Your Username"/>
+                                        <div class="form-label-group">
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                                             <label for="username">Username</label>
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="password" name="password" type="password" placeholder="Your Password" />
+                                        <div class="form-label-group">
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                             <label for="password">Password</label>
                                         </div>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" id="inputRememberPassword" type="checkbox"
-                                                value="" />
-                                            <label class="form-check-label" for="inputRememberPassword">Remember
-                                                Password</label>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
                                         </div>
-                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                                        <hr>
+                                        <div class="text-center">
                                             <a class="small" href="#">Forgot Password?</a>
-                                            <button class="btn btn-primary" type="submit">Login</button>
                                         </div>
                                     </form>
                                 </div>
@@ -41,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
         </div>
     </div>
 @endsection
