@@ -18,11 +18,15 @@ class LoginController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
-        } 
+        }
+
+        return back()->withErrors([
+            'password' => 'Login Error, Check Your Username Or Password',
+        ]);
     }
 
     public function logout(Request $request)

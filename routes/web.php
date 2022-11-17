@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductAjaxController;
 use App\Http\Controllers\SOHeaderController;
 use App\Models\Employee;
 use App\Models\SOHeader;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,8 @@ Route::get('/check', function () {
     //     'title' => 'CRUD Datatables',
     //     'subTitle' => 'Dashboard',
     // ]);
-    var_dump(SOHeader::find(2));
+    // var_dump(SOHeader::find(2));
+    var_dump(Hash::make('Kokola2022'));
     // var_dump(
     //     Employee::updateOrCreate(
     //         ['id' => '4'],
