@@ -104,10 +104,10 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
     </li>
-    
+
     <!-- Nav Item - Tables -->
     <li class="nav-item {{ $active === 'soh' ? 'active' : '' }}">
-        <a class="nav-link" href="soheaderajax">
+        <a class="nav-link" href="solist">
             <i class="fas fa-fw fa-table"></i>
             <span>New Tables</span></a>
     </li>

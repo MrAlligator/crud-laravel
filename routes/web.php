@@ -5,9 +5,12 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductAjaxController;
+use App\Http\Controllers\SOController;
 use App\Http\Controllers\SOHeaderController;
 use App\Models\Employee;
 use App\Models\SOHeader;
+use App\Models\SOModel;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +29,7 @@ Route::get('/check', function () {
     //     'title' => 'CRUD Datatables',
     //     'subTitle' => 'Dashboard',
     // ]);
-    var_dump(SOHeader::find(2));
+    var_dump(DB::table('s_o_headers')->where('sonumber', '23563647')->get());
     // var_dump(
     //     Employee::updateOrCreate(
     //         ['id' => '4'],
@@ -38,6 +41,12 @@ Route::get('/check', function () {
     //             'employerAddress' => 'Wiyung',
     //         ],
     //     ),
+    // );
+    // SOHeader::create(
+    //     [
+    //         'tanggal' => '2022-11-21',
+    //         'accountid' => '1766278987',
+    //     ]
     // );
     die();
 });
@@ -52,4 +61,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middl
 
 //CRUD
 Route::resource('ajaxemployee', EmployeeController::class)->middleware('auth');
-Route::resource('soheaderajax', SOHeaderController::class)->middleware('auth');
+
+Route::get('solist', [SOController::class, 'index'])->name('solist')->middleware('auth');
+Route::post('savesoheader', [SOController::class, 'saveSOHeader'])->name('save.soheader')->middleware('auth');
+Route::get('addsodetail/{soID}/edit', [SOController::class, 'addSODetail'])->name('add.sodetail')->middleware('auth');

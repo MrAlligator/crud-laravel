@@ -18,8 +18,8 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('sonumber', 25);
             $table->integer('accountid');
-            $table->string('accountname', 45);
-            $table->string('customer', 200);
+            $table->string('accountname', 45)->nullable();
+            $table->string('customer', 200)->nullable();
             $table->timestamps();
         });
     }

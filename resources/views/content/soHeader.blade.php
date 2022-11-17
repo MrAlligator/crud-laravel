@@ -26,8 +26,11 @@
                     <table class="table table-bordered data-table-so" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Customer</th>
                                 <th>SO Date</th>
+                                <th>SO Number</th>
+                                <th>Account ID</th>
+                                <th>Account Name</th>
+                                <th>Customer</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -53,18 +56,29 @@
                 <form id="soHeaderForm" name="soHeaderForm" class="form-signin">
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
-                        <input type="hidden" name="datehid" id="datehid">
                         <div class="form-label-group">
                             <input type="date" class="form-control" id="date" name="date" placeholder="Date">
                             <label for="date">Date</label>
                         </div>
                         <div class="form-label-group">
-                            <select name="customer" id="customer" class="form-control">
+                            <select name="accountid" id="accountid" class="form-control">
                                 <option value="" selected disabled>Select Customer</option>
-                                <option value="Test A">Test A</option>
-                                <option value="Test B">Test B</option>
-                                <option value="Test C">Test C</option>
+                                <option value="1">Test A</option>
+                                <option value="2">Test B</option>
+                                <option value="3">Test C</option>
                             </select>
+                        </div>
+                        <div class="form-label-group">
+                            <input type="text" class="form-control" id="accountName" name="accountName" placeholder="Account Name">
+                            <label for="accountName">Account Name</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input type="text" class="form-control" id="customer" name="customer" placeholder="Customer">
+                            <label for="customer">Customer</label>
+                        </div>
+                        <div class="form-label-group">
+                            <input type="text" class="form-control" id="sonumber" name="sonumber" placeholder="SO Number">
+                            <label for="sonumber">SO Number</label>
                         </div>
                     </div>
                 </form>

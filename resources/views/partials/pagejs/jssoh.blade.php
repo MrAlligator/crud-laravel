@@ -11,10 +11,23 @@
         var table = $('.data-table-so').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('soheaderajax.index') }}",
-            columns: [{
+            ajax: "{{ route('solist') }}",
+            columns: [
+                {
                     data: 'tanggal',
                     name: 'tanggal'
+                },
+                {
+                    data: 'sonumber',
+                    name: 'sonumber'
+                },
+                {
+                    data: 'accountid',
+                    name: 'accountid'
+                },
+                {
+                    data: 'accountname',
+                    name: 'accountname'
                 },
                 {
                     data: 'customer',
@@ -37,62 +50,23 @@
             $('#funcBtn').val("save");
         });
 
-        $('body').on('click', '.editSO', function() {
-            var id = $(this).data('id');
-            $.get("{{ route('soheaderajax.index') }}" + '/' + id + '/edit', function(data) {
-                console.log(data);
-                $('#soHeaderModal').modal('show');
-                $('#soHeaderModalLabel').html("Edit");
-                $('#funcBtn').html("Save Changes");
-                $('#funcBtn').val("edit");
-                $('#id').val(data.id);
-                $('#date').val(data.tangal);
-                $('#customer').val(data.customer);
-            })
-        });
-
         $('#funcBtn').click(function(e) {
+            var soID = $('#sonumber').val();
             e.preventDefault();
             $.ajax({
                 data: $('#soHeaderForm').serialize(),
-                url: "{{ route('soheaderajax.store') }}",
+                url: "{{ route('save.soheader') }}",
                 type: "POST",
                 dataType: 'json',
                 success: function(data) {
                     $('#soHeaderForm').trigger("reset");
                     $('#soHeaderModal').modal('hide');
-                    table.draw();
+                    window.location="addsodetail/" + soID + "/edit";
                 },
                 error: function(data) {
                     console.log('Error:', data);
-                    if ($('#funcBtn').val() == "save") {
-                        alert("Data Gagal Disimpan");
-                    } else if ($('#funcBtn').val() == "edit") {
-                        alert("Data Gagal Diubah");
-                    }
                 }
             });
-        });
-
-        $('body').on('click', '.deleteSO', function() {
-            var id = $(this).data("id");
-            var result = confirm("Delete Data?");
-            if (result) {
-                $.ajax({
-                    type: "DELETE",
-                    url: "{{ route('soheaderajax.store') }}" + '/' + id,
-                    success: function(data) {
-                        alert('Data Removed Succesfully');
-                        table.draw();
-                    },
-                    error: function(data) {
-                        console.log('Error:', data);
-                        alert('Data Failed to Remove');
-                    }
-                });
-            } else {
-                return false;
-            }
         });
     });
 </script>
