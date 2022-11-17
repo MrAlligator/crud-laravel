@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('content')
-    <link href="css/floating.css" rel="stylesheet">
+    <link href="{{ asset('css/floating.css') }}" rel="stylesheet">
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <!-- Content Row -->
