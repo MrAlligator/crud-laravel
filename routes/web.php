@@ -1,16 +1,20 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductAjaxController;
-use App\Http\Controllers\SOController;
-use App\Http\Controllers\SOHeaderController;
+use App\Models\Account;
+use App\Models\SOModel;
 use App\Models\Employee;
 use App\Models\SOHeader;
-use App\Models\SOModel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SOController;
+use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SOHeaderController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductAjaxController;
+use App\Models\Items;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +26,7 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::resource('ajaxemployee', EmployeeController::class)->middleware('auth');
 // Route::resource('ajaxproducts', ProductAjaxController::class)->middleware('auth');
 
 Route::get('/check', function () {
@@ -29,7 +34,9 @@ Route::get('/check', function () {
     //     'title' => 'CRUD Datatables',
     //     'subTitle' => 'Dashboard',
     // ]);
-    var_dump(DB::table('s_o_headers')->where('sonumber', '23563647')->get());
+    // var_dump(DB::table('s_o_headers')->where('sonumber', '23563647')->get());
+    // var_dump(Account::where('accountid', 1)->first());
+    var_dump(Items::where('itemid', 1)->first());
     // var_dump(
     //     Employee::updateOrCreate(
     //         ['id' => '4'],
@@ -59,8 +66,9 @@ Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('g
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.action');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
-//CRUD
-Route::resource('ajaxemployee', EmployeeController::class)->middleware('auth');
+//Opt Load
+Route::get('accopt/{id}/show', [AccountController::class, 'show'])->name('opt.load.acc')->middleware('auth');
+Route::get('itemopt/{id}', [ItemsController::class, 'show'])->name('opt.load.item')->middleware('auth');
 
 Route::get('solist', [SOController::class, 'index'])->name('solist')->middleware('auth');
 Route::post('savesoheader', [SOController::class, 'saveSOHeader'])->name('save.soheader')->middleware('auth');

@@ -63,9 +63,9 @@
                         <div class="form-label-group">
                             <select name="accountid" id="accountid" class="form-control">
                                 <option value="" selected disabled>Select Customer</option>
-                                <option value="1">Test A</option>
-                                <option value="2">Test B</option>
-                                <option value="3">Test C</option>
+                                @foreach ($accountopt as $accopt)
+                                    <option value="{{ $accopt->accountid }}">{{ $accopt->accountcode }} | {{ $accopt->accountname }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-label-group">

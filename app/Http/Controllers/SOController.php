@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
+use App\Models\Items;
 use App\Models\SOHeader;
 use App\Models\SOModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use \Yajra\DataTables\Facades\DataTables;
 
 class SOController extends Controller
@@ -28,7 +31,8 @@ class SOController extends Controller
             'title' => 'Sales Order',
             'subTitle' => 'List',
             'active' => 'soh',
-            'jsuse' => 'jssoh'
+            'jsuse' => 'jssoh',
+            'accountopt' => Account::all()
         ]);
     }
 
@@ -49,13 +53,13 @@ class SOController extends Controller
 
     public function addSODetail($soID)
     {
-        // dd(DB::table('s_o_headers')->where('sonumber', $soID)->get());
         return view('content.soDetail', [
             'title' => 'Sales Order',
             'subTitle' => 'Add Detail',
             'active' => 'soh',
-            'jsuse' => 'blank',
-            'soheader' => DB::table('s_o_headers')->where('sonumber', $soID)->get()
+            'jsuse' => 'jssod',
+            'soheader' => SOHeader::where('sonumber', $soID)->first(),
+            'itemopt' => Items::all()
         ]);
     }
 }

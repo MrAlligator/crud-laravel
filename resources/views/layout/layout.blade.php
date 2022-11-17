@@ -65,6 +65,8 @@
         @include('partials.pagejs.jstest')
     @elseif ($active === 'soh' && $jsuse === 'jssoh')
         @include('partials.pagejs.jssoh')
+    @elseif ($active === 'soh' && $jsuse === 'jssod')
+        @include('partials.pagejs.jssod')
     @endif
 
 </body>

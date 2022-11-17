@@ -1,7 +1,6 @@
 <!-- Page level custom scripts -->
 <script type="text/javascript">
     $(function() {
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -12,8 +11,7 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('solist') }}",
-            columns: [
-                {
+            columns: [{
                     data: 'tanggal',
                     name: 'tanggal'
                 },
@@ -61,12 +59,22 @@
                 success: function(data) {
                     $('#soHeaderForm').trigger("reset");
                     $('#soHeaderModal').modal('hide');
-                    window.location="addsodetail/" + soID + "/edit";
+                    window.location = "addsodetail/" + soID + "/edit";
                 },
                 error: function(data) {
                     console.log('Error:', data);
                 }
             });
+        });
+
+        $('#accountid').on('change', function() {
+            const id = $(this).val();
+            // Fetch dari API
+            fetch("accopt/" + id + "/show")
+                .then(response => response.json())
+                .then(data => {
+                    $("#accountName").val(data.accountname);
+                });
         });
     });
 </script>
