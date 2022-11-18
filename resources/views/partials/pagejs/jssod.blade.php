@@ -12,5 +12,22 @@
                     $("#itemprice").val(data.itemprice);
                 });
         });
+
+        $('#btnSave').click(function(e){
+            e.preventDefault();
+            var item = $('#item').val();
+            var qty = $('#itemqty').val();
+            var price = $('#itemprice').val();
+            var discount = $('discount').val();
+            if (item == '') {
+                alert('Please Select Item First');
+            }
+            if (qty == '') {
+                alert('Quantity cannot be Null');
+            }
+            if (price == '') {
+                alert('Price cannot be Null');
+            }
+        })
     });
 </script>

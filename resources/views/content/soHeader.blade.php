@@ -69,11 +69,11 @@
                             </select>
                         </div>
                         <div class="form-label-group">
-                            <input type="text" class="form-control" id="accountName" name="accountName" placeholder="Account Name" required>
+                            <input type="text" class="form-control" id="accountName" name="accountName" placeholder="Account Name" required readonly>
                             <label for="accountName">Account Name</label>
                         </div>
                         <div class="form-label-group">
-                            <input type="text" class="form-control" id="customer" name="customer" placeholder="Customer" required>
+                            <input type="text" class="form-control" id="customer" name="customer" placeholder="Customer" required readonly>
                             <label for="customer">Customer</label>
                         </div>
                         <div class="form-label-group">
