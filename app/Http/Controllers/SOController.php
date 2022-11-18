@@ -15,6 +15,7 @@ class SOController extends Controller
 {
     public function index(Request $request)
     {
+        dd(DB::connection('sqlsrv')->getDatabaseName());
         if ($request->ajax()) {
             $data = SOHeader::latest()->get();
             return Datatables::of($data)

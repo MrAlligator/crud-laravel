@@ -36,7 +36,8 @@ Route::get('/check', function () {
     // ]);
     // var_dump(DB::table('s_o_headers')->where('sonumber', '23563647')->get());
     // var_dump(Account::where('accountid', 1)->first());
-    var_dump(Items::where('itemid', 1)->first());
+    $cek = Items::all();
+    var_dump($cek);
     // var_dump(
     //     Employee::updateOrCreate(
     //         ['id' => '4'],

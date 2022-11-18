@@ -42,7 +42,6 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label for="item">Select Item</label>
                                         <select name="item" id="item" class="form-control">
                                             <option value="" selected disabled>Select an Item</option>
                                             @foreach ($itemopt as $opt)
@@ -51,21 +50,28 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <input type="hidden" name="itemid" id="itemid">
                                     <input type="hidden" name="itemname" id="itemname">
                                     <input type="hidden" name="itemcode" id="itemcode">
-                                    <div class="form-group">
-                                        <label for="itemqty">Quatity</label>
+                                    <div class="form-label-group">
                                         <input type="text" class="form-control" id="itemqty" name="itemqty"
-                                            placeholder="Quatity" readonly>
+                                        placeholder="Quatity" required>
+                                        <label for="itemqty">Quatity</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="itemprice">Price</label>
+                                <div class="col-lg-4">
+                                    <div class="form-label-group">
                                         <input type="text" class="form-control" id="itemprice" name="itemprice"
-                                            placeholder="Price" readonly>
+                                        placeholder="Price" required>
+                                        <label for="itemprice">Price</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-label-group">
+                                        <input type="text" class="form-control" id="discount" name="discount"
+                                        placeholder="Discount" required>
+                                        <label for="discount">Discount</label>
                                     </div>
                                 </div>
                             </div>

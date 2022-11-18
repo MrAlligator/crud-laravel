@@ -9,7 +9,6 @@
                     $("#itemid").val(data.itemid);
                     $("#itemname").val(data.itemname);
                     $("#itemcode").val(data.itemcode);
-                    $("#itemqty").val(data.itemqty);
                     $("#itemprice").val(data.itemprice);
                 });
         });

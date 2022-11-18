@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Items extends Model
 {
     use HasFactory;
+
+    // protected $connection = 'sqlsrv';
+    // protected $table = 'TItem';
 }

@@ -74,6 +74,7 @@
                 .then(response => response.json())
                 .then(data => {
                     $("#accountName").val(data.accountname);
+                    $("#customer").val(data.accountname);
                 });
         });
     });

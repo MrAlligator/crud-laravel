@@ -57,11 +57,11 @@
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <div class="form-label-group">
-                            <input type="date" class="form-control" id="date" name="date" placeholder="Date">
+                            <input type="date" class="form-control" id="date" name="date" placeholder="Date" required>
                             <label for="date">Date</label>
                         </div>
                         <div class="form-label-group">
-                            <select name="accountid" id="accountid" class="form-control">
+                            <select name="accountid" id="accountid" class="form-control" required>
                                 <option value="" selected disabled>Select Customer</option>
                                 @foreach ($accountopt as $accopt)
                                     <option value="{{ $accopt->accountid }}">{{ $accopt->accountcode }} | {{ $accopt->accountname }}</option>
@@ -69,15 +69,15 @@
                             </select>
                         </div>
                         <div class="form-label-group">
-                            <input type="text" class="form-control" id="accountName" name="accountName" placeholder="Account Name">
+                            <input type="text" class="form-control" id="accountName" name="accountName" placeholder="Account Name" required>
                             <label for="accountName">Account Name</label>
                         </div>
                         <div class="form-label-group">
-                            <input type="text" class="form-control" id="customer" name="customer" placeholder="Customer">
+                            <input type="text" class="form-control" id="customer" name="customer" placeholder="Customer" required>
                             <label for="customer">Customer</label>
                         </div>
                         <div class="form-label-group">
-                            <input type="text" class="form-control" id="sonumber" name="sonumber" placeholder="SO Number">
+                            <input type="text" class="form-control" id="sonumber" name="sonumber" placeholder="SO Number" required>
                             <label for="sonumber">SO Number</label>
                         </div>
                     </div>
