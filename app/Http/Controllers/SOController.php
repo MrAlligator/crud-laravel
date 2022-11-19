@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use \Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Http;
 
 class SOController extends Controller
 {
@@ -32,8 +33,7 @@ class SOController extends Controller
             'title' => 'Sales Order',
             'subTitle' => 'List',
             'active' => 'soh',
-            'jsuse' => 'jssoh',
-            'accountopt' => Account::all()
+            'jsuse' => 'jssoh'
         ]);
     }
 

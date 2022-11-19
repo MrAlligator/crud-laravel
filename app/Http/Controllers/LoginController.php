@@ -22,10 +22,11 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password, 'isERP' => 1])) {
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         }
+        return back()->with('error', 'Login Error');
     }
 
     public function logout(Request $request)

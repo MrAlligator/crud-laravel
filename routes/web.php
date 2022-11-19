@@ -4,6 +4,7 @@ use App\Models\Account;
 use App\Models\SOModel;
 use App\Models\Employee;
 use App\Models\SOHeader;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SOController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\SOHeaderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductAjaxController;
 use App\Models\Items;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +38,10 @@ Route::get('/check', function () {
     // ]);
     // var_dump(DB::table('s_o_headers')->where('sonumber', '23563647')->get());
     // var_dump(Account::where('accountid', 1)->first());
-    $cek = Items::all();
-    var_dump($cek);
+    // $cek = SOHeader::all();
+    // $cek = Http::get('http://akses.kokola.co.id/api/magnetar/customer.php');
+    $response = Http::get('http://akses.kokola.co.id/api/magnetar/customer.php');
+    dd($response);
     // var_dump(
     //     Employee::updateOrCreate(
     //         ['id' => '4'],
@@ -56,7 +60,6 @@ Route::get('/check', function () {
     //         'accountid' => '1766278987',
     //     ]
     // );
-    die();
 });
 
 //Dashboard

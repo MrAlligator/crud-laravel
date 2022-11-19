@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('userid');
             $table->string('username')->unique();
             $table->string('password');
-            $table->integer('isERP')->default(0);
+            $table->boolean('isERP');
             $table->rememberToken();
             $table->timestamps();
         });

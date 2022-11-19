@@ -5,10 +5,14 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <!-- Content Row -->
+        <div class="mt-4 mb-4">
+            <a data-toggle="modal" id="addData" data-target="#soHeaderModal" type="button" class="btn btn-outline-success">Add Data</a>
+            <button type="button" class="btn btn-outline-alert" id="cek">Cek</button>
+        </div>
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Data</h6>
-                <div class="dropdown no-arrow">
+                {{-- <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -19,7 +23,7 @@
                         <a class="dropdown-item" href="#" data-toggle="modal" id="addData"
                             data-target="#soHeaderModal">Tambah</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -62,10 +66,6 @@
                         </div>
                         <div class="form-label-group">
                             <select name="accountid" id="accountid" class="form-control" required>
-                                <option value="" selected disabled>Select Customer</option>
-                                @foreach ($accountopt as $accopt)
-                                    <option value="{{ $accopt->accountid }}">{{ $accopt->accountcode }} | {{ $accopt->accountname }}</option>
-                                @endforeach
                             </select>
                         </div>
                         <div class="form-label-group">
