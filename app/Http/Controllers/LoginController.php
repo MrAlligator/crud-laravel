@@ -9,7 +9,10 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('content.login');
+        return view('content.login', [
+            'title' => 'Magnetar',
+            'subTitle' => 'Login'
+        ]);
     }
 
     public function authenticate(Request $request)
@@ -18,11 +21,11 @@ class LoginController extends Controller
             'username' => ['required'],
             'password' => ['required'],
         ]);
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
-        } 
+        }
     }
 
     public function logout(Request $request)
