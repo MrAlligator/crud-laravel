@@ -52,7 +52,15 @@
         });
 
         $('#funcBtn').click(function(e) {
+            var date = $('#date').val();
+            var customer = $('#accountid').val();
             var soID = $('#sonumber').val();
+            if (date == '') {
+                alert('Please Choose Date First');
+            }
+            if (customer == 0) {
+                alert('Please Choose Customer First');
+            }
             e.preventDefault();
             $.ajax({
                 data: $('#soHeaderForm').serialize(),
@@ -76,6 +84,7 @@
 
             let defaultOption = document.createElement('option');
             defaultOption.text = 'Choose Customer';
+            defaultOption.value = 0;
 
             dropdown.add(defaultOption);
             dropdown.selectedIndex = 0;
@@ -101,7 +110,7 @@
                             for (let i = 0; i < array[0][1].length; i++) {
                                 option = document.createElement('option');
                                 option.text = array[0][1][i].Account_Name;
-                                option.value = array[0][1][i].Account_Id;
+                                option.value = array[0][1][i].Account_Id + '^' + array[0][1][i].Account_Name + '^' + array[0][1][i].Sales_Person;
                                 dropdown.add(option);
                             }
                         });

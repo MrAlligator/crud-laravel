@@ -60,6 +60,10 @@
                 <form id="soHeaderForm" name="soHeaderForm" class="form-signin">
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="sonumberview" name="sonumberview" placeholder="SO********" required readonly>
+                            <input type="hidden" id="sonumber" name="sonumber" value="SO{{ $date }}">
+                        </div>
                         <div class="form-label-group">
                             <input type="date" class="form-control" id="date" name="date" placeholder="Date" required>
                             <label for="date">Date</label>
@@ -67,18 +71,6 @@
                         <div class="form-label-group">
                             <select name="accountid" id="accountid" class="form-control" required>
                             </select>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="accountName" name="accountName" placeholder="Account Name" required readonly>
-                            <label for="accountName">Account Name</label>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="customer" name="customer" placeholder="Customer" required readonly>
-                            <label for="customer">Customer</label>
-                        </div>
-                        <div class="form-label-group">
-                            <input type="text" class="form-control" id="sonumber" name="sonumber" placeholder="SO Number" required>
-                            <label for="sonumber">SO Number</label>
                         </div>
                     </div>
                 </form>

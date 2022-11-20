@@ -38,7 +38,7 @@ Route::get('/check', function () {
     //     'subTitle' => 'Dashboard',
     // ]);
     // var_dump(DB::table('s_o_headers')->where('sonumber', '23563647')->get());
-    // var_dump(Account::where('accountid', 1)->first());
+    dd(SODetail::where('sonumber', 'SO1668920007')->count());
     // $cek = SOHeader::all();
     // $cek = Http::get('http://akses.kokola.co.id/api/magnetar/customer.php');
     // $response = Http::get('http://akses.kokola.co.id/api/magnetar/customer.php');
@@ -66,22 +66,22 @@ Route::get('/check', function () {
     //         'accountid' => '1766278987',
     //     ]
     // );
-    $a = 'hahaha^hihihi^huhuhu';
-    $item = $a;
-    $iteminput = explode('^', $item, 3);
-    $cek = $iteminput[0];
-    SODetail::create(
-        [
-            'soid' => 1,
-            'itemid' => 1,
-            'itemcode' => '$itemcode',
-            'itemname' => $cek,
-            'qty' => 10,
-            'price' => 10000,
-            'discount' => 0,
-            'total' => 100000,
-        ]
-    );
+    // $a = 'hahaha^hihihi^huhuhu';
+    // $item = $a;
+    // $iteminput = explode('^', $item, 3);
+    // $cek = $iteminput[0];
+    // SODetail::create(
+    //     [
+    //         'soid' => 1,
+    //         'itemid' => 1,
+    //         'itemcode' => '$itemcode',
+    //         'itemname' => $cek,
+    //         'qty' => 10,
+    //         'price' => 10000,
+    //         'discount' => 0,
+    //         'total' => 100000,
+    //     ]
+    // );
 });
 
 //Dashboard

@@ -52,7 +52,8 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
-                                        <input type="text" class="form-control-plaintext number" id="itemqty" name="itemqty"
+                                        <input type="text" class="form-control number" id="itemqty" name="itemqty"
+                                            @if ($countSOD != 0) value="{{ $sodetail->qty }}" @endif
                                             placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
@@ -65,7 +66,8 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
-                                        <input type="text" class="form-control-plaintext number" id="itemprice" name="itemprice"
+                                        <input type="text" class="form-control number" id="itemprice" name="itemprice"
+                                            @if ($countSOD != 0) value="{{ $sodetail->price }}" @endif
                                             placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
@@ -76,13 +78,20 @@
                                 <div class="col-lg-1">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="disc" name="disc"
+                                            @if ($countSOD != 0) value="{{ $sodetail->discperc }}" @endif
                                             placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
-                                        <input type="text" class="form-control-plaintext number" id="discount" name="discount"
-                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
+                                        <input type="text" class="form-control-plaintext number" id="discount"
+                                            name="discount"
+                                            @if ($countSOD != 0) value="{{ $sodetail->discount }}" @endif
+                                            placeholder="0" onkeypress="return hanyaAngka(event)" required readonly>
+                                    </div>
+                                    <div class="text-right">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            id="btnCalculate">Calculate</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-7"></div>
@@ -94,8 +103,10 @@
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
-                                        <input type="text" class="form-control-plaintext number" id="total" name="total"
-                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
+                                        <input type="text" class="form-control-plaintext number" id="total"
+                                            @if ($countSOD != 0) value="{{ $sodetail->total }}" @endif
+                                            name="total" placeholder="0" onkeypress="return hanyaAngka(event)" required
+                                            readonly>
                                     </div>
                                 </div>
                                 <br>
