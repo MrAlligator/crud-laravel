@@ -94,7 +94,7 @@
                             // console.log(data.Regional_Code);
 
                             var array = Object.keys(data).map((key) => [Number(key), data[key]]);
-                            console.log(array[0][1]);
+                            // console.log(array[0][1]);
 
                             let option;
 
@@ -133,7 +133,7 @@
         $('#accountid').on('change', function() {
             const id = $(this).val();
             // Fetch dari API
-            fetch("accopt/" + id + "/show")
+            fetch("http://akses.kokola.co.id/api/magnetar/customer.php")
                 .then(response => response.json())
                 .then(data => {
                     $("#accountName").val(data.accountname);

@@ -66,13 +66,20 @@ class SOController extends Controller
 
     public function saveSODetail(Request $request)
     {
+        $item = $request->item;
+        $iteminput = explode('^', $item);
+        $itemcode = $iteminput[0];
+        $itemname = $iteminput[1];
         SODetail::create(
             [
-                'tanggal' => $request->date,
-                'accountid' => $request->accountid,
-                'sonumber' => $request->sonumber,
-                'accountname' => $request->accountName,
-                'customer' => $request->customer
+                'soid' => $request->soid,
+                'itemid' => 1,
+                'itemcode' => $itemcode,
+                'itemname' => $itemname,
+                'qty' => $request->itemqty,
+                'price' => $request->itemprice,
+                'discount' => $request->discount,
+                'total' => $request->total,
             ]
         );
 

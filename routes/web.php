@@ -1,11 +1,14 @@
 <?php
 
+use App\Models\Items;
 use App\Models\Account;
 use App\Models\SOModel;
 use App\Models\Employee;
+use App\Models\SODetail;
 use App\Models\SOHeader;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SOController;
 use App\Http\Controllers\ItemsController;
@@ -15,8 +18,6 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SOHeaderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductAjaxController;
-use App\Models\Items;
-use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,13 @@ Route::get('/check', function () {
     // var_dump(Account::where('accountid', 1)->first());
     // $cek = SOHeader::all();
     // $cek = Http::get('http://akses.kokola.co.id/api/magnetar/customer.php');
-    $response = Http::get('http://akses.kokola.co.id/api/magnetar/customer.php');
-    dd($response);
+    // $response = Http::get('http://akses.kokola.co.id/api/magnetar/customer.php');
+    // dd($response);
+    // $a = 'hahaha^hihihi^huhuhu';
+    // $item = $a;
+    // $iteminput = explode('^', $item, 3);
+    // $cek = $iteminput[0];
+    // dd($cek);
     // var_dump(
     //     Employee::updateOrCreate(
     //         ['id' => '4'],
@@ -60,6 +66,22 @@ Route::get('/check', function () {
     //         'accountid' => '1766278987',
     //     ]
     // );
+    $a = 'hahaha^hihihi^huhuhu';
+    $item = $a;
+    $iteminput = explode('^', $item, 3);
+    $cek = $iteminput[0];
+    SODetail::create(
+        [
+            'soid' => 1,
+            'itemid' => 1,
+            'itemcode' => '$itemcode',
+            'itemname' => $cek,
+            'qty' => 10,
+            'price' => 10000,
+            'discount' => 0,
+            'total' => 100000,
+        ]
+    );
 });
 
 //Dashboard
@@ -77,3 +99,4 @@ Route::get('itemopt/{id}', [ItemsController::class, 'show'])->name('opt.load.ite
 Route::get('solist', [SOController::class, 'index'])->name('solist')->middleware('auth');
 Route::post('savesoheader', [SOController::class, 'saveSOHeader'])->name('save.soheader')->middleware('auth');
 Route::get('addsodetail/{soID}/edit', [SOController::class, 'addSODetail'])->name('add.sodetail')->middleware('auth');
+Route::post('savesodetail', [SOController::class, 'saveSODetail'])->name('save.sodetail')->middleware('auth');

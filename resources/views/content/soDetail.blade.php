@@ -5,13 +5,13 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
         <div class="row justify-content-lg-start">
-            <div class="col-lg-8">
+            <div class="col-lg">
                 <div class="card shadow mb-4">
                     <div class="card-header">
                         <h6 class="m-0 font-weight-bold text-primary">Add SO Detail</h6>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form id="soDetailForm">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-6">
@@ -43,55 +43,78 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <select name="item" id="item" class="form-control">
-                                            <option value="" selected disabled>Select an Item</option>
-                                            @foreach ($itemopt as $opt)
-                                                <option value="{{ $opt->itemid }}">{{ $opt->itemcode }} ||
-                                                    {{ $opt->itemname }}</option>
-                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-4"></div>
-                                <div class="col-lg-4"></div>
-                                <div class="col-lg-4">
-                                    <input type="hidden" name="itemid" id="itemid">
-                                    <input type="hidden" name="itemname" id="itemname">
-                                    <input type="hidden" name="itemcode" id="itemcode">
-                                    <div class="form-label-group">
-                                        <input type="text" class="form-control" id="itemqty" name="itemqty"
-                                            placeholder="Quatity" required>
-                                        <label for="itemqty">Quatity</label>
+                                <div class="col-lg-7"></div>
+                                <div class="col-lg-3">
+                                    <label class="col-form-label">Quantity</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-plaintext number" id="itemqty" name="itemqty"
+                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
-                                    <div class="form-label-group">
-                                        <input type="text" class="form-control" id="itemprice" name="itemprice"
-                                            placeholder="Price" required>
-                                        <label for="itemprice">Price</label>
+                                </div>
+                                <div class="col-lg-7"></div>
+                                <div class="col-lg-2">
+                                    <label class="col-form-label">Price</label>
+                                </div>
+                                <div class="col-lg-1">
+                                    <label class="col-form-label">Rp.</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-plaintext number" id="itemprice" name="itemprice"
+                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
-                                    <div class="form-label-group">
-                                        <input type="text" class="form-control" id="discount" name="discount"
-                                            placeholder="Discount" required>
-                                        <label for="discount">Discount</label>
+                                </div>
+                                <div class="col-lg-7"></div>
+                                <div class="col-lg-2">
+                                    <label class="col-form-label">Discount (%)</label>
+                                </div>
+                                <div class="col-lg-1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="disc" name="disc"
+                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
-                                    <div class="form-label-group">
-                                        <input type="text" class="form-control" id="total" name="total"
-                                            placeholder="Total" required>
-                                        <label for="total">Total</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-plaintext number" id="discount" name="discount"
+                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7"></div>
+                                <div class="col-lg-2">
+                                    <label class="col-form-label">Total</label>
+                                </div>
+                                <div class="col-lg-1">
+                                    <label class="col-form-label">Rp.</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control-plaintext number" id="total" name="total"
+                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-outline-danger form-control" id="btnCancel">Cancel</button>
+                                        <button type="button" class="btn btn-outline-danger form-control"
+                                            id="btnCancel">Cancel</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-outline-primary form-control" id="btnSave">Save</button>
+                                        <button type="button" class="btn btn-outline-primary form-control"
+                                            id="btnSave">Save</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-outline-success form-control" id="btnConfirm">Confirm</button>
+                                        <button type="button" class="btn btn-outline-success form-control"
+                                            id="btnConfirm">Confirm</button>
                                     </div>
                                 </div>
                             </div>
