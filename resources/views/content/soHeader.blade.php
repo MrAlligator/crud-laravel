@@ -69,6 +69,11 @@
                             <label for="date">Date</label> --}}
                         </div>
                         <div class="form-label-group">
+                            <select name="regional" id="regional" class="form-control" required>
+                            </select>
+                        </div>
+                        <input type="hidden" id="regcode" name="regcode">
+                        <div class="form-label-group">
                             <select name="accountid" id="accountid" class="form-control" required>
                             </select>
                         </div>

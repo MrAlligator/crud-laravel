@@ -27,8 +27,10 @@ class SOController extends Controller
                     $cek = SODetail::where('sonumber', $row->sonumber)->count();
                     if ($cek != 0) {
                         $btn = '<a href="addsodetail/' . $row->sonumber . '/edit" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
+                        $btn = $btn . ' <a href="" data-original-title="Send" class="send btn btn-success btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
                     } else {
                         $btn = '<a href="addsodetail/' . $row->sonumber . '/add" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
+                        $btn = $btn . ' <a data-original-title="Send" class="send btn btn-danger btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
                     }
                     return $btn;
                 })
