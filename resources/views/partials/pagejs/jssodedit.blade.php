@@ -85,6 +85,8 @@
             var qty = $('#itemqty').val();
             var price = $('#itemprice').val();
             var total = $('#total').val();
+            var discperc = $('#disc').val();
+            var discount = $('#discount').val();
             if (item == 0) {
                 alert('Please Select Item First');
                 return false;

@@ -31,7 +31,6 @@
                             <tr>
                                 <th>SO Date</th>
                                 <th>SO Number</th>
-                                <th>Account ID</th>
                                 <th>Account Name</th>
                                 <th>Customer</th>
                                 <th>Action</th>

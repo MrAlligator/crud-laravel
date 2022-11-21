@@ -16,23 +16,23 @@
             ajax: "{{ route('solist') }}",
             columns: [{
                     data: 'tanggal',
-                    name: 'tanggal'
+                    name: 'tanggal',
+                    searchable: true
                 },
                 {
                     data: 'sonumber',
-                    name: 'sonumber'
-                },
-                {
-                    data: 'accountid',
-                    name: 'accountid'
+                    name: 'sonumber',
+                    searchable: true
                 },
                 {
                     data: 'accountname',
-                    name: 'accountname'
+                    name: 'accountname',
+                    searchable: true
                 },
                 {
                     data: 'customer',
-                    name: 'customer'
+                    name: 'customer',
+                    searchable: true
                 },
                 {
                     data: 'action',
