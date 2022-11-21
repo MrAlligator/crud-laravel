@@ -1,13 +1,12 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-        &nbsp;
-        <div class="sidebar-brand-icon mt-1">
-            {{-- <img class="mb-4" src="brand/bootstrap-logo.svg" alt="" width="60" height="45"> --}}
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ asset('/dashboard') }}">
+        <div class="sidebar-brand-icon mt-4">
+            <img class="mb-4" src="{{ asset('brand/bootstrap-logo.svg') }}" alt="" width="60" height="45">
         </div>
-        {{-- <div class="sidebar-brand-text mx-3"></div> --}}
+        <div class="sidebar-brand-text mx-3">MAGNETAR</div>
     </a>
 
     <!-- Divider -->
@@ -99,17 +98,17 @@
     </li> --}}
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item {{ $active === 'emp' ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ $active === 'emp' ? 'active' : '' }}">
         <a class="nav-link" href="{{ asset('ajaxemployee') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Tables -->
     <li class="nav-item {{ $active === 'soh' ? 'active' : '' }}">
         <a class="nav-link" href="{{ asset('solist') }}">
             <i class="fas fa-fw fa-table"></i>
-            <span>New Tables</span></a>
+            <span>SO Tables</span></a>
     </li>
 
     <!-- Divider -->

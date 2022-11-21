@@ -41,10 +41,10 @@
                                             </div>
                                         </div> --}}
                                         <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                                        <hr>
-                                        <div class="text-center">
+                                        {{-- <hr> --}}
+                                        {{-- <div class="text-center">
                                             <a class="small" href="#">Forgot Password?</a>
-                                        </div>
+                                        </div> --}}
                                     </form>
                                 </div>
                             </div>

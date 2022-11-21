@@ -57,9 +57,11 @@
             var soID = $('#sonumber').val();
             if (date == '') {
                 alert('Please Choose Date First');
+                return false;
             }
             if (customer == 0) {
                 alert('Please Choose Customer First');
+                return false;
             }
             e.preventDefault();
             $.ajax({
