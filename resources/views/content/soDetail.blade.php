@@ -46,7 +46,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-7"></div>
+                                <div class="col-lg-7">
+                                    <input type="hidden" name="noid" id="noid" @if ($countSOD != 0) value="{{ $sodetail->noid }}" @endif>
+                                </div>
                                 <div class="col-lg-3">
                                     <label class="col-form-label">Quantity</label>
                                 </div>
@@ -104,23 +106,30 @@
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <input type="text" class="form-control-plaintext number" id="total"
+                                            name="total"
                                             @if ($countSOD != 0) value="{{ $sodetail->total }}" @endif
-                                            name="total" placeholder="0" onkeypress="return hanyaAngka(event)" required
-                                            readonly>
+                                            placeholder="0" onkeypress="return hanyaAngka(event)" required readonly>
                                     </div>
                                 </div>
                                 <br>
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 mb-4">
                                     <div class="form-group">
                                         <button type="button" class="btn btn-outline-danger form-control"
                                             id="btnCancel">Cancel</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-outline-primary form-control"
-                                            id="btnSave">Save</button>
-                                    </div>
+                                    @if ($countSOD != 0)
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-outline-primary form-control"
+                                                id="btnUpdate">Update</button>
+                                        </div>
+                                    @else
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-outline-primary form-control"
+                                                id="btnSave">Save</button>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">

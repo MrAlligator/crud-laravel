@@ -70,7 +70,7 @@
                 success: function(data) {
                     $('#soHeaderForm').trigger("reset");
                     $('#soHeaderModal').modal('hide');
-                    window.location = "addsodetail/" + soID + "/edit";
+                    window.location = "addsodetail/" + soID + "/add";
                 },
                 error: function(data) {
                     console.log('Error:', data);
@@ -110,7 +110,8 @@
                             for (let i = 0; i < array[0][1].length; i++) {
                                 option = document.createElement('option');
                                 option.text = array[0][1][i].Account_Name;
-                                option.value = array[0][1][i].Account_Id + '^' + array[0][1][i].Account_Name + '^' + array[0][1][i].Sales_Person;
+                                option.value = array[0][1][i].Account_Id + '^' + array[0][1][i]
+                                    .Account_Name + '^' + array[0][1][i].Sales_Person;
                                 dropdown.add(option);
                             }
                         });
@@ -120,34 +121,5 @@
                     console.error('Fetch Error -', err);
                 });
         }
-
-        // function reqCus() {
-        //     fetch(apiCustomer, {
-        //             method: "get"
-        //         })
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             let allcustomers = data.result;
-        //             let html = '';
-        //             for (var i = 0; i < data.result.length; i++) {
-        //                 html += "<option value=" + allcustomers[i].slug + ">" + allcustomers[i].name +
-        //                     "</option>"
-        //             }
-        //             document.getElementById("accountid").innerHTML = html;
-        //         })
-        // }
-
-        // reqCus();
-
-        $('#accountid').on('change', function() {
-            const id = $(this).val();
-            // Fetch dari API
-            fetch("http://akses.kokola.co.id/api/magnetar/customer.php")
-                .then(response => response.json())
-                .then(data => {
-                    $("#accountName").val(data.accountname);
-                    $("#customer").val(data.accountname);
-                });
-        });
     });
 </script>

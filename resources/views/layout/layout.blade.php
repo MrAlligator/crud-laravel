@@ -19,6 +19,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="{{ asset('vendor/jquery/jquery-ui.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <style>
@@ -72,6 +73,8 @@
         @include('partials.pagejs.jssoh')
     @elseif ($active === 'soh' && $jsuse === 'jssod')
         @include('partials.pagejs.jssod')
+    @elseif ($active === 'soh' && $jsuse === 'jssodedit')
+        @include('partials.pagejs.jssodedit')
     @endif
 
 </body>

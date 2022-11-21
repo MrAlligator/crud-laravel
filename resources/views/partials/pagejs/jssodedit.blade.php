@@ -1,9 +1,9 @@
 <script type="text/javascript">
     $(function() {
         reqItem();
-        console.log($('#discount').val());
 
         function reqItem() {
+            var countSOD = {{ $countSOD }};
             let dropdown = document.getElementById('item');
             dropdown.length = 0;
 
@@ -37,6 +37,12 @@
                                 option.text = array[0][1][0][i].Item_Name;
                                 option.value = array[0][1][0][i].Item_Code + '^' + array[0][1][0][i]
                                     .Item_Name;
+                                if (countSOD != 0) {
+                                    var code = '{{ $sodetail->itemcode }}'
+                                    if (code == array[0][1][0][i].Item_Code) {
+                                        option.selected = true;
+                                    }
+                                }
                                 dropdown.add(option);
                             }
                         });
@@ -70,13 +76,15 @@
             }
         })
 
-        $('#btnSave').click(function(e) {
+        $('#btnUpdate').click(function(e) {
+            var savedTot = {{ $sodetail->total }};
+            var savedQty = {{ $sodetail->qty }};
+            var savedPrice = {{ $sodetail->price }};
+            var savedItem = '{{ $sodetail->itemcode }}';
             var item = $('#item').val();
             var qty = $('#itemqty').val();
             var price = $('#itemprice').val();
             var total = $('#total').val();
-            var discperc = $('#disc').val();
-            var discount = $('#discount').val();
             if (item == 0) {
                 alert('Please Select Item First');
                 return false;
@@ -100,11 +108,10 @@
             e.preventDefault();
             $.ajax({
                 data: $('#soDetailForm').serialize(),
-                url: "{{ route('save.sodetail') }}",
+                url: "{{ route('update.sodetail') }}",
                 type: "POST",
                 dataType: 'json',
                 success: function(data) {
-                    $('#soDetailForm').trigger("reset");
                     window.location.href = "{{ route('solist') }}"
                 },
                 error: function(data) {

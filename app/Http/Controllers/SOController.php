@@ -24,7 +24,12 @@ class SOController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="addsodetail/' . $row->sonumber . '/edit" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
+                    $cek = SODetail::where('sonumber', $row->sonumber)->count();
+                    if ($cek != 0) {
+                        $btn = '<a href="addsodetail/' . $row->sonumber . '/edit" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
+                    } else {
+                        $btn = '<a href="addsodetail/' . $row->sonumber . '/add" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -47,8 +52,10 @@ class SOController extends Controller
         $accountid = $custArray[0];
         $accountname = $custArray[1];
         $customer = $custArray[2];
+        $valdate = $request->date;
+        $date = Carbon::parse($valdate)->format('Y-m-d');
         SOHeader::create([
-            'tanggal' => $request->date,
+            'tanggal' => $date,
             'accountid' => $accountid,
             'sonumber' => $request->sonumber,
             'accountname' => $accountname,
@@ -66,8 +73,19 @@ class SOController extends Controller
         $data['active'] = 'soh';
         $data['jsuse'] = 'jssod';
         $data['soheader'] = SOHeader::where('sonumber', $soID)->first();
-        $data['sodetail'] = SODetail::where('sonumber', $soID)->first();
         $data['countSOD'] = $check;
+        return view('content.soDetail', $data);
+    }
+
+    public function editSODetail($soID)
+    {
+        $data['title'] = 'Sales Order';
+        $data['subTitle'] = 'Edit Detail';
+        $data['active'] = 'soh';
+        $data['jsuse'] = 'jssodedit';
+        $data['soheader'] = SOHeader::where('sonumber', $soID)->first();
+        $data['sodetail'] = SODetail::where('sonumber', $soID)->first();
+        $data['countSOD'] = SODetail::where('sonumber', $soID)->count();
         return view('content.soDetail', $data);
     }
 
@@ -77,6 +95,10 @@ class SOController extends Controller
         $iteminput = explode('^', $item);
         $itemcode = $iteminput[0];
         $itemname = $iteminput[1];
+        $discperc = $request->disc;
+        if ($discperc == '') {
+            $discperc = 0;
+        }
         SODetail::create([
             'sonumber' => $request->sonumber,
             'soid' => $request->soid,
@@ -86,10 +108,35 @@ class SOController extends Controller
             'qty' => $request->itemqty,
             'price' => $request->itemprice,
             'discount' => $request->discount,
-            'discperc' => $request->disc,
+            'discperc' => $discperc,
             'total' => $request->total,
         ]);
 
         return response()->json(['success' => 'Successfully Save Data.']);
+    }
+
+    public function updateSODetail(Request $request)
+    {
+        $item = $request->item;
+        $iteminput = explode('^', $item);
+        $itemcode = $iteminput[0];
+        $itemname = $iteminput[1];
+        $discperc = $request->disc;
+        if ($discperc == '') {
+            $discperc = 0;
+        }
+        // dd($request->noid);
+        SODetail::where('noid', $request->noid)->update([
+            'itemid' => 1,
+            'itemcode' => $itemcode,
+            'itemname' => $itemname,
+            'qty' => $request->itemqty,
+            'price' => $request->itemprice,
+            'discount' => $request->discount,
+            'discperc' => $discperc,
+            'total' => $request->total,
+        ]);
+
+        return response()->json(['success' => 'Successfully Update Data.']);
     }
 }

@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('s_o_details', function (Blueprint $table) {
             $table->id('noid');
             $table->integer('soid');
+            $table->string('sonumber');
             $table->integer('itemid');
             $table->string('itemcode', 25);
             $table->string('itemname', 100);
             $table->string('qty');
+            $table->integer('discperc');
             $table->decimal('price', 19, 2);
             $table->decimal('discount', 19, 2);
             $table->decimal('total', 19, 2);

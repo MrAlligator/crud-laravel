@@ -1,5 +1,6 @@
 <!-- Bootstrap core JavaScript-->
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/jquery/jquery-3.6.0.js') }}"></script>
+<script src="{{ asset('vendor/jquery/jquery-ui.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Core plugin JavaScript-->
@@ -19,4 +20,12 @@
             return false;
         return true;
     }
+</script>
+
+<script>
+    $(function() {
+        $("#date").datepicker(
+            {minDate: new Date(),}
+        );
+    });
 </script>

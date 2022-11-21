@@ -33,12 +33,14 @@ use App\Http\Controllers\ProductAjaxController;
 // Route::resource('ajaxproducts', ProductAjaxController::class)->middleware('auth');
 
 Route::get('/check', function () {
-    // return view('content.dashboard', [
-    //     'title' => 'CRUD Datatables',
-    //     'subTitle' => 'Dashboard',
-    // ]);
+
+    // return view('layout.check');
     // var_dump(DB::table('s_o_headers')->where('sonumber', '23563647')->get());
-    dd(SODetail::where('sonumber', 'SO1668920007')->count());
+    // dd(SODetail::where('sonumber', 'SO1668920007')->count());
+    // dd(Hash::make('admin'));
+    // SODetail::where('noid', 1)->update([
+    //     'qty' => 20,
+    // ]);
     // $cek = SOHeader::all();
     // $cek = Http::get('http://akses.kokola.co.id/api/magnetar/customer.php');
     // $response = Http::get('http://akses.kokola.co.id/api/magnetar/customer.php');
@@ -98,5 +100,7 @@ Route::get('itemopt/{id}', [ItemsController::class, 'show'])->name('opt.load.ite
 
 Route::get('solist', [SOController::class, 'index'])->name('solist')->middleware('auth');
 Route::post('savesoheader', [SOController::class, 'saveSOHeader'])->name('save.soheader')->middleware('auth');
-Route::get('addsodetail/{soID}/edit', [SOController::class, 'addSODetail'])->name('add.sodetail')->middleware('auth');
+Route::get('addsodetail/{soID}/add', [SOController::class, 'addSODetail'])->name('add.sodetail')->middleware('auth');
+Route::get('addsodetail/{soID}/edit', [SOController::class, 'editSODetail'])->name('edit.sodetail')->middleware('auth');
 Route::post('savesodetail', [SOController::class, 'saveSODetail'])->name('save.sodetail')->middleware('auth');
+Route::post('updatesodetail', [SOController::class, 'updateSODetail'])->name('update.sodetail')->middleware('auth');

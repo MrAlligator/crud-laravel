@@ -15,7 +15,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ $active === 'dsh' ? 'active' : '' }}">
-        <a class="nav-link" href="/dashboard">
+        <a class="nav-link" href="{{ asset('/dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -100,14 +100,14 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item {{ $active === 'emp' ? 'active' : '' }}">
-        <a class="nav-link" href="ajaxemployee">
+        <a class="nav-link" href="{{ asset('ajaxemployee') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
     </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item {{ $active === 'soh' ? 'active' : '' }}">
-        <a class="nav-link" href="solist">
+        <a class="nav-link" href="{{ asset('solist') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>New Tables</span></a>
     </li>

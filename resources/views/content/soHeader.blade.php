@@ -7,7 +7,6 @@
         <!-- Content Row -->
         <div class="mt-4 mb-4">
             <a data-toggle="modal" id="addData" data-target="#soHeaderModal" type="button" class="btn btn-outline-success">Add Data</a>
-            <button type="button" class="btn btn-outline-alert" id="cek">Cek</button>
         </div>
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -64,9 +63,11 @@
                             <input type="text" class="form-control" id="sonumberview" name="sonumberview" placeholder="SO********" required readonly>
                             <input type="hidden" id="sonumber" name="sonumber" value="SO{{ $date }}">
                         </div>
-                        <div class="form-label-group">
-                            <input type="date" class="form-control" id="date" name="date" placeholder="Date" required>
-                            <label for="date">Date</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="date" name="date" placeholder="Open Date">
+                            {{-- <input type="date" class="form-control" id="date" name="date" placeholder="Open Date"> --}}
+                            {{-- <input type="date" class="form-control" id="date" name="date" min="{{ $date }}" placeholder="Date" required>
+                            <label for="date">Date</label> --}}
                         </div>
                         <div class="form-label-group">
                             <select name="accountid" id="accountid" class="form-control" required>
