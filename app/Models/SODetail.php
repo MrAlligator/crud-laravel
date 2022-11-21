@@ -10,6 +10,6 @@ class SODetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'soid', 'itemid', 'itemcode', 'itemname', 'qty', 'price', 'discount', 'total', 'sonumber', 'discperc'
+        'soid', 'itemcode', 'itemname', 'qty', 'price', 'discount', 'total', 'sonumber', 'discperc'
     ];
 }

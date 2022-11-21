@@ -104,7 +104,6 @@ class SOController extends Controller
         SODetail::create([
             'sonumber' => $request->sonumber,
             'soid' => $request->soid,
-            'itemid' => 1,
             'itemcode' => $itemcode,
             'itemname' => $itemname,
             'qty' => $request->itemqty,
@@ -129,7 +128,6 @@ class SOController extends Controller
         }
         // dd($request->noid);
         SODetail::where('noid', $request->noid)->update([
-            'itemid' => 1,
             'itemcode' => $itemcode,
             'itemname' => $itemname,
             'qty' => $request->itemqty,

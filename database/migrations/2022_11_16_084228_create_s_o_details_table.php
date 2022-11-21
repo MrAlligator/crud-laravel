@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id('noid');
             $table->integer('soid');
             $table->string('sonumber');
-            $table->integer('itemid');
             $table->string('itemcode', 25);
             $table->string('itemname', 100);
             $table->string('qty');
