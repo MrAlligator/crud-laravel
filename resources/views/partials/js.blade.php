@@ -12,6 +12,9 @@
 <!-- Page level plugins -->
 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendor/datatables/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('vendor/datatables/dataTables.rowReorder.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
     function hanyaAngka(evt) {

@@ -24,14 +24,8 @@ class SOController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $cek = SODetail::where('sonumber', $row->sonumber)->count();
-                    if ($cek != 0) {
-                        $btn = '<a href="addsodetail/' . $row->sonumber . '/edit" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
-                        $btn = $btn . ' <a href="" data-original-title="Send" class="send btn btn-success btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
-                    } else {
-                        $btn = '<a href="addsodetail/' . $row->sonumber . '/add" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
-                        $btn = $btn . ' <a data-original-title="Send" class="send btn btn-danger btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
-                    }
+                    $btn = '<a href="addsodetail/' . $row->sonumber . '/add" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
+                    $btn = $btn . ' <a data-original-title="Send" class="send btn btn-danger btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -75,6 +69,7 @@ class SOController extends Controller
         $data['active'] = 'soh';
         $data['jsuse'] = 'jssod';
         $data['soheader'] = SOHeader::where('sonumber', $soID)->first();
+        $data['sodetail'] = SODetail::where('sonumber', $soID)->first();
         $data['countSOD'] = $check;
         return view('content.soDetail', $data);
     }
@@ -138,5 +133,27 @@ class SOController extends Controller
         ]);
 
         return response()->json(['success' => 'Successfully Update Data.']);
+    }
+
+    public function itemIndex(Request $request, $soID)
+    {
+        if ($request->ajax()) {
+            $data = SODetail::where('sonumber', $soID)->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<btn href="#" data-id="' . $row->itemcode . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem"><i class="fas fa-fw fa-folder-open"></i></btn>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+    }
+
+    public function showItem($soNumber, $itemCode)
+    {
+        $parameters = ['itemcode' => $itemCode, 'sonumber' => $soNumber];
+        $item = SODetail::where($parameters)->get();
+        return response()->json($item);
     }
 }

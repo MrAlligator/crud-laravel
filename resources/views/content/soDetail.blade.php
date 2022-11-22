@@ -42,12 +42,14 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <select name="item" id="item" class="form-control">
+                                        <select name="item" id="item"
+                                            class="form-control js-example-basic-multiple">
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-7">
-                                    <input type="hidden" name="noid" id="noid" @if ($countSOD != 0) value="{{ $sodetail->noid }}" @endif>
+                                    <input type="hidden" name="noid" id="noid"
+                                        @if ($countSOD != 0) value="{{ $sodetail->noid }}" @endif>
                                 </div>
                                 <div class="col-lg-3">
                                     <label class="col-form-label">Quantity</label>
@@ -55,7 +57,6 @@
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <input type="text" class="form-control number" id="itemqty" name="itemqty"
-                                            @if ($countSOD != 0) value="{{ $sodetail->qty }}" @endif
                                             placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
@@ -69,7 +70,6 @@
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <input type="text" class="form-control number" id="itemprice" name="itemprice"
-                                            @if ($countSOD != 0) value="{{ $sodetail->price }}" @endif
                                             placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
@@ -80,16 +80,14 @@
                                 <div class="col-lg-1">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="disc" name="disc"
-                                            @if ($countSOD != 0) value="{{ $sodetail->discperc }}" @endif
                                             placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <input type="text" class="form-control-plaintext number" id="discount"
-                                            name="discount"
-                                            @if ($countSOD != 0) value="{{ $sodetail->discount }}" @endif
-                                            placeholder="0" onkeypress="return hanyaAngka(event)" required readonly>
+                                            name="discount" placeholder="0" onkeypress="return hanyaAngka(event)" required
+                                            readonly>
                                     </div>
                                     <div class="text-right">
                                         <button type="button" class="btn btn-sm btn-outline-secondary"
@@ -106,9 +104,8 @@
                                 <div class="col-lg-2">
                                     <div class="form-group">
                                         <input type="text" class="form-control-plaintext number" id="total"
-                                            name="total"
-                                            @if ($countSOD != 0) value="{{ $sodetail->total }}" @endif
-                                            placeholder="0" onkeypress="return hanyaAngka(event)" required readonly>
+                                            name="total" placeholder="0" onkeypress="return hanyaAngka(event)" required
+                                            readonly>
                                     </div>
                                 </div>
                                 <br>
@@ -119,17 +116,10 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    @if ($countSOD != 0)
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn-outline-primary form-control"
-                                                id="btnUpdate">Update</button>
-                                        </div>
-                                    @else
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn-outline-primary form-control"
-                                                id="btnSave">Save</button>
-                                        </div>
-                                    @endif
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-outline-primary form-control"
+                                            id="btnSave">Save</button>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
@@ -140,10 +130,55 @@
                             </div>
                         </form>
                     </div>
-                    <div class="card-footer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-lg-start">
+            <div class="col-lg">
+                <div class="card shadow mb-4">
+                    <div class="card-header">
+                        <h6 class="m-0 font-weight-bold text-primary">Selected Item</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered data-table-item" id="dataTable" width="100%"
+                                cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Item Code</th>
+                                        <th>Item Name</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- /.container-fluid -->
+    <div class="modal fade" id="editItemModal" tabindex="-1" aria-labelledby="editItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editItemModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="updateBtn"></button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -16,6 +16,10 @@
         });
 
         var table = $('.data-table-so').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true,
             processing: true,
             serverSide: true,
             ajax: "{{ route('solist') }}",

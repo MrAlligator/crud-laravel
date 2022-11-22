@@ -1,7 +1,8 @@
 <script type="text/javascript">
     $(function() {
         reqItem();
-        console.log($('#discount').val());
+
+        // $('.js-example-basic-multiple').select2();
 
         function reqItem() {
             let dropdown = document.getElementById('item');
@@ -105,12 +106,58 @@
                 dataType: 'json',
                 success: function(data) {
                     $('#soDetailForm').trigger("reset");
-                    window.location.href = "{{ route('solist') }}"
+                    table.draw();
                 },
                 error: function(data) {
                     console.log('Error:', data);
                 }
             });
         })
+
+        var soNumber = $('#sonumber').val();
+        var table = $('.data-table-item').DataTable({
+            rowReorder: {
+                selector: 'td:nth-child(2)'
+            },
+            responsive: true,
+            processing: true,
+            serverSide: true,
+            ajax: "/itemlist/" + soNumber,
+            columns: [{
+                    data: 'itemcode',
+                    name: 'itemcode'
+                },
+                {
+                    data: 'itemname',
+                    name: 'itemname'
+                },
+                {
+                    data: 'qty',
+                    name: 'qty'
+                },
+                {
+                    data: 'total',
+                    name: 'total'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ]
+        });
+
+        $('body').on('click', '.editItem', function() {
+            var itemcode = $(this).data('id');
+            var url = "{{ asset('') }}detailitem/" + soNumber + "/" + itemcode;
+            $.get(url, function(data) {
+                console.log(data);
+                $('#editItemModal').modal('show');
+                $('#editItemModalLabel').html("Edit Item");
+                $('#updateBtn').html("Save Changes");
+                $('#updateBtn').val("edit");
+            });
+        });
     });
 </script>

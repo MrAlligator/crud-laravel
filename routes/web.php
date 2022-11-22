@@ -37,7 +37,10 @@ Route::get('/check', function () {
     // return view('layout.check');
     // var_dump(DB::table('s_o_headers')->where('sonumber', '23563647')->get());
     // dd(SODetail::where('sonumber', 'SO1668920007')->count());
-    // dd(Hash::make('admin'));
+    // dd(Hash::make('Kokola2022'));
+    $parameters = ['itemcode' => '01040101010014', 'sonumber' => 'SO1669114656'];
+    $item = SODetail::where($parameters)->get();
+    dd($item);
     // SODetail::where('noid', 1)->update([
     //     'qty' => 20,
     // ]);
@@ -99,8 +102,10 @@ Route::get('accopt/{id}/show', [AccountController::class, 'show'])->name('opt.lo
 Route::get('itemopt/{id}', [ItemsController::class, 'show'])->name('opt.load.item')->middleware('auth');
 
 Route::get('solist', [SOController::class, 'index'])->name('solist')->middleware('auth');
+Route::get('itemlist/{soID}', [SOController::class, 'itemIndex'])->name('itemlist')->middleware('auth');
 Route::post('savesoheader', [SOController::class, 'saveSOHeader'])->name('save.soheader')->middleware('auth');
 Route::get('addsodetail/{soID}/add', [SOController::class, 'addSODetail'])->name('add.sodetail')->middleware('auth');
-Route::get('addsodetail/{soID}/edit', [SOController::class, 'editSODetail'])->name('edit.sodetail')->middleware('auth');
+Route::get('detailitem/{itemCode}/{soID}', [SOController::class, 'showItem'])->name('showitem')->middleware('auth');
+// Route::get('addsodetail/{soID}/edit', [SOController::class, 'editSODetail'])->name('edit.sodetail')->middleware('auth');
 Route::post('savesodetail', [SOController::class, 'saveSODetail'])->name('save.sodetail')->middleware('auth');
 Route::post('updatesodetail', [SOController::class, 'updateSODetail'])->name('update.sodetail')->middleware('auth');
