@@ -24,8 +24,13 @@ class SOController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
+                    $check = SODetail::where('sonumber', $row->sonumber)->count();
                     $btn = '<a href="addsodetail/' . $row->sonumber . '/add" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
-                    $btn = $btn . ' <a data-original-title="Send" class="send btn btn-danger btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
+                    if ($check != 0) {
+                        $btn = $btn . ' <a data-original-title="Send" data-id="' . $row->itemcode . '" class="sending btn btn-success btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
+                    } else {
+                        $btn = $btn . ' <a data-original-title="Send" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -74,18 +79,6 @@ class SOController extends Controller
         return view('content.soDetail', $data);
     }
 
-    public function editSODetail($soID)
-    {
-        $data['title'] = 'Sales Order';
-        $data['subTitle'] = 'Edit Detail';
-        $data['active'] = 'soh';
-        $data['jsuse'] = 'jssodedit';
-        $data['soheader'] = SOHeader::where('sonumber', $soID)->first();
-        $data['sodetail'] = SODetail::where('sonumber', $soID)->first();
-        $data['countSOD'] = SODetail::where('sonumber', $soID)->count();
-        return view('content.soDetail', $data);
-    }
-
     public function saveSODetail(Request $request)
     {
         $item = $request->item;
@@ -113,23 +106,23 @@ class SOController extends Controller
 
     public function updateSODetail(Request $request)
     {
-        $item = $request->item;
+        $item = $request->itemlst;
         $iteminput = explode('^', $item);
         $itemcode = $iteminput[0];
         $itemname = $iteminput[1];
-        $discperc = $request->disc;
+        $discperc = $request->discEdit;
         if ($discperc == '') {
             $discperc = 0;
         }
         // dd($request->noid);
-        SODetail::where('noid', $request->noid)->update([
+        SODetail::where('noid', $request->noidEdit)->update([
             'itemcode' => $itemcode,
             'itemname' => $itemname,
-            'qty' => $request->itemqty,
-            'price' => $request->itemprice,
-            'discount' => $request->discount,
+            'qty' => $request->itemqtyEdit,
+            'price' => $request->itempriceEdit,
+            'discount' => $request->discountEdit,
             'discperc' => $discperc,
-            'total' => $request->total,
+            'total' => $request->totalEdit,
         ]);
 
         return response()->json(['success' => 'Successfully Update Data.']);

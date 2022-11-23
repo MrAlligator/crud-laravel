@@ -177,5 +177,10 @@
                     console.error('Fetch Error -', err);
                 });
         }
+
+        $('body').on('click', '.sending', function() {
+            var itemcode = $(this).data('id');
+            console.log(itemcode);
+        });
     });
 </script>

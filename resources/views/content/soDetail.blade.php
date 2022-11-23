@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="col-lg-1">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="disc" name="disc"
+                                        <input type="text" class="form-control number" id="disc" name="disc"
                                             placeholder="0" onkeypress="return hanyaAngka(event)" required>
                                     </div>
                                 </div>
@@ -172,7 +172,80 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form id="editItemForm" name="editItemForm" class="form-signin">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="hidden" id="sonumberEdit" name="sonumberEdit">
+                                <input type="hidden" id="itemcodeEdit" name="itemcodeEdit">
+                                <input type="hidden" id="noidEdit" name="noidEdit">
+                                <div class="form-group">
+                                    <select name="itemlst" id="itemlst" class="form-control js-example-basic-multiple">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <label class="col-form-label">Quantity</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control number" id="itemqtyEdit"
+                                        name="itemqtyEdit" placeholder="0" onkeypress="return hanyaAngka(event)"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <label class="col-form-label">Price</label>
+                            </div>
+                            <div class="col-lg-1">
+                                <label class="col-form-label">Rp.</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control number" id="itempriceEdit"
+                                        name="itempriceEdit" placeholder="0" onkeypress="return hanyaAngka(event)"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="col-form-label">Discount (%)</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <input type="text" class="form-control number" id="discEdit" name="discEdit"
+                                        placeholder="0" onkeypress="return hanyaAngka(event)" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-1">
+                                <label class="col-form-label">Rp.</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control-plaintext number" id="discountEdit"
+                                        name="discountEdit" placeholder="0" onkeypress="return hanyaAngka(event)"
+                                        required readonly>
+                                </div>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                                        id="btnreCalculate">Calculate</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <label class="col-form-label">Total</label>
+                            </div>
+                            <div class="col-lg-1">
+                                <label class="col-form-label">Rp.</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" class="form-control-plaintext number" id="totalEdit"
+                                        name="totalEdit" placeholder="0" onkeypress="return hanyaAngka(event)" required
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
