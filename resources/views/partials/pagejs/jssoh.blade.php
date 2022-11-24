@@ -179,8 +179,34 @@
         }
 
         $('body').on('click', '.sending', function() {
-            var itemcode = $(this).data('id');
-            console.log(itemcode);
+            var sendsonumber = $(this).data('id');
+            var url = "{{ asset('') }}showsend/" + sendsonumber;
+            console.log(url);
+            $.get(url, function(data) {
+                $('#sendModal').modal('show');
+                $('#sendModalLabel').html('Send SO');
+                $('#sendBtn').html('Send SO');
+                $('#modalContent').html('Send This SO?');
+                console.log(data);
+                for (let i = 0; i < data.length; i++) {
+                    var sendAccId = data[i].accountid;
+                    var sendAccName = data[i].accountname;
+                    var sendDisc = data[i].discount;
+                    var sendDiscPerc = data[i].discperc;
+                    var sendItemCode = data[i].itemcode;
+                    var sendItemName = data[i].itemname;
+                    var sendNoId = data[i].noid;
+                    var sendPrice = data[i].price;
+                    var sendQty = data[i].qty;
+                    var sendSoId = data[i].soid;
+                    var sendSONumber = data[i].sonumber;
+                    var sendDate = data[i].tanggal;
+                    var sendTotal = data[i].total;
+                    var url2 = "http://akses.kokola.co.id/api/magnetar/senddata.php?sonumber=" +
+                        sendSONumber + "&itemcode=" + sendItemCode;
+                    console.log(url2);
+                }
+            });
         });
     });
 </script>

@@ -3,6 +3,12 @@
         //LOAD ONSTART
         reqItem();
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         // $('.js-example-basic-multiple').select2();
 
         //FUNGSI LOAD SELECT ITEM
@@ -127,9 +133,41 @@
             });
         })
 
+        //CONFIRM
+        $('#btnConfirm').click(function(e) {
+            var soNUMBER = $('#sonumber').val();
+            e.preventDefault();
+            var result = confirm("Confirm " + soNUMBER + "?");
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ asset('') }}confirm/" + soNUMBER,
+                    success: function(data) {
+                        table.draw();
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                    }
+                });
+            } else {
+                return false;
+            }
+        });
+
         //LOAD DATA TABLES ITEM
         var soNumber = $('#sonumber').val();
         var table = $('.data-table-item').DataTable({
+            rowGroup: {
+                startRender: null,
+                endRender: function(rows, group) {
+                    var TotalQty = rows
+                        .data()
+                        .pluck(3)
+                        .reduce(function(a, b) {
+                            return a + b;
+                        }, 0);
+                }
+            },
             rowReorder: {
                 selector: 'td:nth-child(2)'
             },

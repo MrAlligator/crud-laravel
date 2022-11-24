@@ -24,10 +24,9 @@ class SOController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $check = SODetail::where('sonumber', $row->sonumber)->count();
                     $btn = '<a href="addsodetail/' . $row->sonumber . '/add" target="_blank" data-original-title="Edit" class="edit btn btn-primary btn-sm"><i class="fas fa-fw fa-folder-open"></i></a>';
-                    if ($check != 0) {
-                        $btn = $btn . ' <a data-original-title="Send" data-id="' . $row->itemcode . '" class="sending btn btn-success btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
+                    if ($row->isConfirmed == 1 && $row->isSended == 0) {
+                        $btn = $btn . ' <a data-original-title="Send" data-id="' . $row->sonumber . '" class="sending btn btn-success btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
                     } else {
                         $btn = $btn . ' <a data-original-title="Send" class="btn btn-danger btn-sm"><i class="fas fa-fw fa-paper-plane"></i></a>';
                     }
@@ -61,6 +60,8 @@ class SOController extends Controller
             'sonumber' => $request->sonumber,
             'accountname' => $accountname,
             'customer' => $customer,
+            'isConfirmed' => 0,
+            'isSended' => 0,
         ]);
 
         return response()->json(['success' => 'Successfully Save Data.']);
@@ -131,11 +132,15 @@ class SOController extends Controller
     public function itemIndex(Request $request, $soID)
     {
         if ($request->ajax()) {
-            $data = SODetail::where('sonumber', $soID)->get();
+            $data = DB::table('s_o_headers')->select('*')->join('s_o_details', 's_o_details.sonumber', '=', 's_o_headers.sonumber')->where('s_o_headers.sonumber', $soID)->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<btn href="#" data-id="' . $row->itemcode . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem"><i class="fas fa-fw fa-folder-open"></i></btn>';
+                    if ($row->isConfirmed == 0) {
+                        $btn = '<btn href="#" data-id="' . $row->itemcode . '" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem"><i class="fas fa-fw fa-folder-open"></i></btn>';
+                    } else {
+                        $btn = '<btn data-original-title="Edit" class="edit btn btn-secondary btn-sm"><i class="fas fa-fw fa-folder"></i></btn>';
+                    }
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -148,5 +153,27 @@ class SOController extends Controller
         $parameters = ['itemcode' => $itemCode, 'sonumber' => $soNumber];
         $item = SODetail::where($parameters)->get();
         return response()->json($item);
+    }
+
+    public function showSend($soNumber)
+    {
+        $send = DB::table('s_o_headers')->select('*')->join('s_o_details', 's_o_details.sonumber', '=', 's_o_headers.sonumber')->where('s_o_headers.sonumber', $soNumber)->get();
+        return response()->json($send);
+    }
+
+    public function confirm($soNumber)
+    {
+        SOHeader::where('sonumber', $soNumber)->update([
+            'isConfirmed' => 1
+        ]);
+        return response()->json(['success' => 'Successfully Update Data.']);
+    }
+
+    public function send($soNumber)
+    {
+        SOHeader::where('sonumber', $soNumber)->update([
+            'isSended' => 1
+        ]);
+        return response()->json(['success' => 'Successfully Update Data.']);
     }
 }

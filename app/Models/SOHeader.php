@@ -10,6 +10,6 @@ class SOHeader extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tanggal', 'sonumber', 'accountid', 'accountname', 'customer'
+        'tanggal', 'sonumber', 'accountid', 'accountname', 'customer', 'isConfirmed', 'isSended'
     ];
 }

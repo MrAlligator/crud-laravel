@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('accountid');
             $table->string('accountname', 45)->nullable();
             $table->string('customer', 200)->nullable();
+            $table->boolean('isConfirmed');
+            $table->boolean('isSended');
             $table->timestamps();
         });
     }

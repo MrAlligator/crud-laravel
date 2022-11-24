@@ -36,11 +36,11 @@ Route::get('/check', function () {
 
     // return view('layout.check');
     // var_dump(DB::table('s_o_headers')->where('sonumber', '23563647')->get());
-    // dd(SODetail::where('sonumber', 'SO1668920007')->count());
-    // dd(Hash::make('Kokola2022'));
-    $parameters = ['itemcode' => '01040101010014', 'sonumber' => 'SO1669114656'];
-    $item = SODetail::where($parameters)->get();
-    dd($item);
+    // dd(DB::table('s_o_headers')->select('*')->join('s_o_details', 's_o_details.sonumber', '=', 's_o_headers.sonumber')->where('s_o_headers.sonumber', 'SO1669079297')->get());
+    dd(Hash::make('Kokola2022'));
+    // $parameters = ['itemcode' => '01040101010014', 'sonumber' => 'SO1669114656'];
+    // $item = SODetail::where($parameters)->get();
+    // dd($item);
     // SODetail::where('noid', 1)->update([
     //     'qty' => 20,
     // ]);
@@ -109,3 +109,5 @@ Route::get('detailitem/{itemCode}/{soID}', [SOController::class, 'showItem'])->n
 // Route::get('addsodetail/{soID}/edit', [SOController::class, 'editSODetail'])->name('edit.sodetail')->middleware('auth');
 Route::post('savesodetail', [SOController::class, 'saveSODetail'])->name('save.sodetail')->middleware('auth');
 Route::post('updatesodetail', [SOController::class, 'updateSODetail'])->name('update.sodetail')->middleware('auth');
+Route::get('showsend/{soNumb}', [SOController::class, 'showSend'])->name('showsend')->middleware('auth');
+Route::post('confirm/{soNumb}', [SOController::class, 'confirm'])->name('confirm.soheader')->middleware('auth');

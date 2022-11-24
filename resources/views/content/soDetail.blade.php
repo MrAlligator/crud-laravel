@@ -40,93 +40,95 @@
                                         <label for="customer">Customer</label>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
+                                <div class="col-lg-12" @if ($soheader->isConfirmed == 1) hidden @endif>
                                     <div class="form-group">
-                                        <select name="item" id="item"
-                                            class="form-control js-example-basic-multiple">
+                                        <select name="item" id="item" class="form-control">
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-7">
-                                    <input type="hidden" name="noid" id="noid"
-                                        @if ($countSOD != 0) value="{{ $sodetail->noid }}" @endif>
-                                </div>
-                                <div class="col-lg-3">
-                                    <label class="col-form-label">Quantity</label>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control number" id="itemqty" name="itemqty"
-                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
+                                @if ($soheader->isConfirmed == 0)
+                                    <div class="col-lg-7">
+                                        <input type="hidden" name="noid" id="noid"
+                                            @if ($countSOD != 0) value="{{ $sodetail->noid }}" @endif>
                                     </div>
-                                </div>
-                                <div class="col-lg-7"></div>
-                                <div class="col-lg-2">
-                                    <label class="col-form-label">Price</label>
-                                </div>
-                                <div class="col-lg-1">
-                                    <label class="col-form-label">Rp.</label>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control number" id="itemprice" name="itemprice"
-                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Quantity</label>
                                     </div>
-                                </div>
-                                <div class="col-lg-7"></div>
-                                <div class="col-lg-2">
-                                    <label class="col-form-label">Discount (%)</label>
-                                </div>
-                                <div class="col-lg-1">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control number" id="disc" name="disc"
-                                            placeholder="0" onkeypress="return hanyaAngka(event)" required>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control number" id="itemqty" name="itemqty"
+                                                placeholder="0" onkeypress="return hanyaAngka(event)" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control-plaintext number" id="discount"
-                                            name="discount" placeholder="0" onkeypress="return hanyaAngka(event)" required
-                                            readonly>
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-2">
+                                        <label class="col-form-label">Price</label>
                                     </div>
-                                    <div class="text-right">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            id="btnCalculate">Calculate</button>
+                                    <div class="col-lg-1">
+                                        <label class="col-form-label">Rp.</label>
                                     </div>
-                                </div>
-                                <div class="col-lg-7"></div>
-                                <div class="col-lg-2">
-                                    <label class="col-form-label">Total</label>
-                                </div>
-                                <div class="col-lg-1">
-                                    <label class="col-form-label">Rp.</label>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control-plaintext number" id="total"
-                                            name="total" placeholder="0" onkeypress="return hanyaAngka(event)" required
-                                            readonly>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control number" id="itemprice"
+                                                name="itemprice" placeholder="0" onkeypress="return hanyaAngka(event)"
+                                                required>
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="col-lg-4 mb-4">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-outline-danger form-control"
-                                            id="btnCancel">Cancel</button>
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-2">
+                                        <label class="col-form-label">Discount (%)</label>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-outline-primary form-control"
-                                            id="btnSave">Save</button>
+                                    <div class="col-lg-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control number" id="disc" name="disc"
+                                                placeholder="0" onkeypress="return hanyaAngka(event)" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-outline-success form-control"
-                                            id="btnConfirm">Confirm</button>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control-plaintext number" id="discount"
+                                                name="discount" placeholder="0" onkeypress="return hanyaAngka(event)"
+                                                required readonly>
+                                        </div>
+                                        <div class="text-right">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                id="btnCalculate">Calculate</button>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col-lg-7"></div>
+                                    <div class="col-lg-2">
+                                        <label class="col-form-label">Total</label>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label class="col-form-label">Rp.</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control-plaintext number" id="total"
+                                                name="total" placeholder="0" onkeypress="return hanyaAngka(event)"
+                                                required readonly>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-4 mb-4">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-outline-danger form-control"
+                                                id="btnCancel">Cancel</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-outline-primary form-control"
+                                                id="btnSave">Save</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-outline-success form-control"
+                                                id="btnConfirm">Confirm</button>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </form>
                     </div>
